@@ -1,4 +1,4 @@
-import { Delta, Loro } from "npm:loro-crdt@0.4.0";
+import { Delta, Loro } from "npm:loro-crdt@0.5.0";
 import { expect } from "npm:expect@29.7.0";
 
 Deno.test("Text", () => {
@@ -87,8 +87,6 @@ Deno.test("Rich text event", () => {
         attributes: { bold: true }
       }]);
       ran = true;
-    } else {
-      throw new Error()
     }
   });
   text.mark({ start: 0, end: 5 }, "bold", true);

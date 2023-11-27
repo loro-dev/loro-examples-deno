@@ -1,4 +1,4 @@
-import { Loro, LoroList, LoroMap } from "npm:loro-crdt@0.4.0"
+import { Loro, LoroList, LoroMap } from "npm:loro-crdt@0.5.0"
 import { expect } from "npm:expect@29.7.0"
 
 Deno.test("Basic usage", () => {
@@ -39,11 +39,11 @@ Deno.test("Sub containers", () => {
   // insert a List container at index 0, and get the handler to that list
   const subList = list.insertContainer(0, "List");
   subList.insert(0, "A");
-  expect(list.getDeepValue()).toStrictEqual([["A"]]);
+  expect(list.toJson()).toStrictEqual([["A"]]);
   // create a Text container inside the Map container
   const subtext = map.setContainer("text", "Text");
   subtext.insert(0, "Hi");
-  expect(map.getDeepValue()).toStrictEqual({ text: "Hi" });
+  expect(map.toJson()).toStrictEqual({ text: "Hi" });
 });
 
 Deno.test("Sync", () => {
