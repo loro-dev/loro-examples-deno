@@ -1,4 +1,4 @@
-import { Loro, LoroList, LoroMap } from "npm:loro-crdt@0.5.0"
+import { Loro, LoroList, LoroMap } from "npm:loro-crdt@0.6.3"
 import { expect } from "npm:expect@29.7.0"
 
 Deno.test("Basic usage", () => {

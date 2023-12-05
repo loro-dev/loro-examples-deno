@@ -1,4 +1,4 @@
-import { Delta, Loro } from "npm:loro-crdt@0.5.0";
+import { Delta, Loro } from "npm:loro-crdt@0.6.3";
 import { expect } from "npm:expect@29.7.0";
 
 Deno.test("Text", () => {
@@ -71,7 +71,7 @@ Deno.test("Rich text custom expand behavior - Link", () => {
   }] as Delta<string>[]);
 })
 
-Deno.test("Rich text event", () => {
+Deno.test("Rich text event", async () => {
   /**
    * Loro text will receive rich text event in Quill Delta format
    */
@@ -91,5 +91,6 @@ Deno.test("Rich text event", () => {
   });
   text.mark({ start: 0, end: 5 }, "bold", true);
   doc.commit();
+  await new Promise((resolve) => setTimeout(resolve, 0));
   expect(ran).toBeTruthy();
 });
