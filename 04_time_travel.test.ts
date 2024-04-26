@@ -1,4 +1,4 @@
-import { Loro } from "npm:loro-crdt@0.6.3";
+import { Loro } from "npm:loro-crdt@0.15.0";
 import { expect } from "npm:expect@29.7.0";
 
 Deno.test("Time Travel", () => {
@@ -16,12 +16,12 @@ Deno.test("Time Travel", () => {
   });
 
   // Every unicode char insertion is a single operation for Text container
-  doc.checkout([{ peer: 0n, counter: 0 }]);
+  doc.checkout([{ peer: "0", counter: 0 }]);
   expect(doc.toJson()).toStrictEqual({
     text: "H"
   });
 
-  doc.checkout([{ peer: 0n, counter: 4 }]);
+  doc.checkout([{ peer: "0", counter: 4 }]);
   expect(doc.toJson()).toStrictEqual({
     text: "Hello"
   });

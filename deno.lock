@@ -3,6 +3,7 @@
   "packages": {
     "specifiers": {
       "npm:expect@29.7.0": "npm:expect@29.7.0",
+      "npm:loro-crdt@0.15.0": "npm:loro-crdt@0.15.0",
       "npm:loro-crdt@0.6.2": "npm:loro-crdt@0.6.2",
       "npm:loro-crdt@0.6.3": "npm:loro-crdt@0.6.3"
     },
@@ -243,6 +244,12 @@
         "integrity": "sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ==",
         "dependencies": {}
       },
+      "loro-crdt@0.15.0": {
+        "integrity": "sha512-fRDXQYAtrGbRKuhHcLigZItkov5veGptbObE0XkD3cUinrBlIQ60ENO9g9yd9OhowaZ16+15wEseIEyTorjX6g==",
+        "dependencies": {
+          "loro-wasm": "loro-wasm@0.15.0"
+        }
+      },
       "loro-crdt@0.6.2": {
         "integrity": "sha512-OsNnZbtWhRMItGKJcpxC+NAXVhXiRrbSh7D07oiAyPUkH2sEXwgRXmS0JN7Qt8JU9BsreOUgsthpyesX95OGXg==",
         "dependencies": {
@@ -254,6 +261,10 @@
         "dependencies": {
           "loro-wasm": "loro-wasm@0.6.1"
         }
+      },
+      "loro-wasm@0.15.0": {
+        "integrity": "sha512-BYVs3z/zs7fW2BXTwHPbVxitJ2l/EdCheT4MhH2ZQGCmi7SKHUoUZ5svW0sksuVmS9potDRcXAgtVvNtfWvCSw==",
+        "dependencies": {}
       },
       "loro-wasm@0.6.1": {
         "integrity": "sha512-rpkUMmbHdoDoWGE28p40Q1fxzWSxdefpqirKglHqEqlkmcU5e5aSarLltklPbf1jtT8E988v8Qx0aA98Z47emw==",

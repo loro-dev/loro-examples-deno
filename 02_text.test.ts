@@ -1,4 +1,4 @@
-import { Delta, Loro } from "npm:loro-crdt@0.6.3";
+import { Delta, Loro } from "npm:loro-crdt@0.15.0";
 import { expect } from "npm:expect@29.7.0";
 
 Deno.test("Text", () => {
@@ -37,9 +37,10 @@ Deno.test("Rich text custom expand behavior - Bold", () => {
    * - Link: will not expand the style when inserting new text at the boundary.
    */
   const doc = new Loro();
+  doc.configTextStyle({ bold: { expand: "after" } })
   const text = doc.getText("text");
   text.insert(0, "Hello world!");
-  text.mark({ start: 0, end: 5, expand: "after" }, "bold", true);
+  text.mark({ start: 0, end: 5 }, "bold", true);
   text.insert(5, "!");
   expect(text.toDelta()).toStrictEqual([{
     insert: "Hello!",
@@ -59,9 +60,12 @@ Deno.test("Rich text custom expand behavior - Link", () => {
    * - Link: will not expand the style when inserting new text at the boundary.
    */
   const doc = new Loro();
+  doc.configTextStyle({
+    link: { expand: "none" },
+  })
   const text = doc.getText("text");
   text.insert(0, "Hello world!");
-  text.mark({ start: 0, end: 5, expand: "none" }, "link", true);
+  text.mark({ start: 0, end: 5 }, "link", true);
   text.insert(5, "!");
   expect(text.toDelta()).toStrictEqual([{
     insert: "Hello",
@@ -80,13 +84,15 @@ Deno.test("Rich text event", async () => {
   text.insert(0, "Hello world!");
   doc.commit();
   let ran = false;
-  text.subscribe(doc, (event) => {
-    if (event.diff.type === "text") {
-      expect(event.diff.diff).toStrictEqual([{
-        retain: 5,
-        attributes: { bold: true }
-      }]);
-      ran = true;
+  text.subscribe((events) => {
+    for (const event of events.events) {
+      if (event.diff.type === "text") {
+        expect(event.diff.diff).toStrictEqual([{
+          retain: 5,
+          attributes: { bold: true }
+        }]);
+        ran = true;
+      }
     }
   });
   text.mark({ start: 0, end: 5 }, "bold", true);

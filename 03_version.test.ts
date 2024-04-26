@@ -1,4 +1,4 @@
-import { Loro, OpId } from "npm:loro-crdt@0.6.3";
+import { Loro, OpId } from "npm:loro-crdt@0.15.0";
 import { expect } from "npm:expect@29.7.0";
 
 
@@ -16,8 +16,8 @@ Deno.test("Frontiers & Version Vector Conversion", () => {
   doc1.commit();
 
   const frontiers = doc1.frontiers();
-  expect(frontiers).toStrictEqual([{ peer: 1n, counter: 1 } as OpId])
+  expect(frontiers).toStrictEqual([{ peer: "1", counter: 1 } as OpId])
   const vv = doc1.frontiersToVV(frontiers);
-  expect(vv).toStrictEqual(new Map([[0n, 1], [1n, 2]]))
+  expect(vv.toJSON()).toStrictEqual(new Map([["0", 1], ["1", 2]]))
   expect(doc1.vvToFrontiers(vv)).toStrictEqual(frontiers);
 })

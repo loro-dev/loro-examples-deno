@@ -1,4 +1,4 @@
-import { Loro } from "npm:loro-crdt@0.6.3";
+import { Loro } from "npm:loro-crdt@0.15.0";
 import { expect } from "npm:expect@29.7.0";
 
 Deno.test("Save and load", () => {
