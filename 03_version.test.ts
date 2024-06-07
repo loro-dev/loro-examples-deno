@@ -1,4 +1,4 @@
-import { Loro, OpId } from "npm:loro-crdt@0.15.0";
+import { Loro, OpId } from "npm:loro-crdt@0.16.4-alpha.0";
 import { expect } from "npm:expect@29.7.0";
 
 

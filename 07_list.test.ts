@@ -1,4 +1,4 @@
-import { Cursor, Loro } from "npm:loro-crdt@0.15.0";
+import { Cursor, Loro } from "npm:loro-crdt@0.16.4-alpha.0";
 import { expect } from "npm:expect@29.7.0";
 
 Deno.test("List", () => {
@@ -17,15 +17,15 @@ Deno.test("List", () => {
     // Concurrently docA and docB update element at index 2
     // docA updates it to 8
     // docB updates it to 9
-    // docA.toJson() should return { list: [0, 1, 8] }
-    // docB.toJson() should return { list: [0, 1, 9] }
+    // docA.toJSON() should return { list: [0, 1, 8] }
+    // docB.toJSON() should return { list: [0, 1, 9] }
 
     listB.delete(2, 1);
     listB.insert(2, 9);
-    expect(docB.toJson()).toStrictEqual({ list: [0, 1, 9] });
+    expect(docB.toJSON()).toStrictEqual({ list: [0, 1, 9] });
     listA.delete(2, 1);
     listA.insert(2, 8);
-    expect(docA.toJson()).toStrictEqual({ list: [0, 1, 8] });
+    expect(docA.toJSON()).toStrictEqual({ list: [0, 1, 8] });
   }
 
   {
@@ -34,8 +34,8 @@ Deno.test("List", () => {
     docB.import(docA.exportFrom(docB.version()));
   }
 
-  expect(docA.toJson()).toStrictEqual({ list: [0, 1, 8, 9] });
-  expect(docB.toJson()).toStrictEqual({ list: [0, 1, 8, 9] });
+  expect(docA.toJSON()).toStrictEqual({ list: [0, 1, 8, 9] });
+  expect(docB.toJSON()).toStrictEqual({ list: [0, 1, 8, 9] });
 })
 
 Deno.test("MovableList", () => {
@@ -54,13 +54,13 @@ Deno.test("MovableList", () => {
     // Concurrently docA and docB update element at index 2
     // docA updates it to 8
     // docB updates it to 9
-    // docA.toJson() should return { list: [0, 1, 8] }
-    // docB.toJson() should return { list: [0, 1, 9] }
+    // docA.toJSON() should return { list: [0, 1, 8] }
+    // docB.toJSON() should return { list: [0, 1, 9] }
 
     listA.set(2, 8);
-    expect(docA.toJson()).toStrictEqual({ list: [0, 1, 8] });
+    expect(docA.toJSON()).toStrictEqual({ list: [0, 1, 8] });
     listB.set(2, 9);
-    expect(docB.toJson()).toStrictEqual({ list: [0, 1, 9] });
+    expect(docB.toJSON()).toStrictEqual({ list: [0, 1, 9] });
   }
 
   {
@@ -70,20 +70,20 @@ Deno.test("MovableList", () => {
   }
 
   // Converge to [0, 1, 9] because docB has larger peerId thus larger logical time
-  expect(docA.toJson()).toStrictEqual({ list: [0, 1, 9] });
-  expect(docB.toJson()).toStrictEqual({ list: [0, 1, 9] });
+  expect(docA.toJSON()).toStrictEqual({ list: [0, 1, 9] });
+  expect(docB.toJSON()).toStrictEqual({ list: [0, 1, 9] });
 
   {
     // Concurrently docA and docB move element at index 0 
     // docA moves it to 2
     // docB moves it to 1
-    // docA.toJson() should return { list: [1, 9, 0] }
-    // docB.toJson() should return { list: [1, 0, 9] }
+    // docA.toJSON() should return { list: [1, 9, 0] }
+    // docB.toJSON() should return { list: [1, 0, 9] }
 
     listA.move(0, 2);
     listB.move(0, 1);
-    expect(docA.toJson()).toStrictEqual({ list: [1, 9, 0] });
-    expect(docB.toJson()).toStrictEqual({ list: [1, 0, 9] });
+    expect(docA.toJSON()).toStrictEqual({ list: [1, 9, 0] });
+    expect(docB.toJSON()).toStrictEqual({ list: [1, 0, 9] });
   }
 
   {
@@ -93,8 +93,8 @@ Deno.test("MovableList", () => {
   }
 
   // Converge to [1, 0, 9] because docB has larger peerId thus larger logical time
-  expect(docA.toJson()).toStrictEqual({ list: [1, 0, 9] });
-  expect(docB.toJson()).toStrictEqual({ list: [1, 0, 9] });
+  expect(docA.toJSON()).toStrictEqual({ list: [1, 0, 9] });
+  expect(docB.toJSON()).toStrictEqual({ list: [1, 0, 9] });
 })
 
 
@@ -119,7 +119,7 @@ Deno.test("List Cursors", () => {
   const listB = docB.getList("list");
   docB.import(exported);
   listB.insert(0, "Foo");
-  expect(docB.toJson()).toStrictEqual({ list: ["Foo", "Hello", "World"] });
+  expect(docB.toJSON()).toStrictEqual({ list: ["Foo", "Hello", "World"] });
   const cursorB = Cursor.decode(encodedCursor);
   {
     // The cursor position is shifted to the right by 1
@@ -127,14 +127,14 @@ Deno.test("List Cursors", () => {
     expect(pos.offset).toBe(2);
   }
   listB.insert(1, "Bar");
-  expect(docB.toJson()).toStrictEqual({ list: ["Foo", "Bar", "Hello", "World"] });
+  expect(docB.toJSON()).toStrictEqual({ list: ["Foo", "Bar", "Hello", "World"] });
   {
     // The cursor position is shifted to the right by 1
     const pos = docB.getCursorPos(cursorB);
     expect(pos.offset).toBe(3);
   }
   listB.delete(3, 1);
-  expect(docB.toJson()).toStrictEqual({ list: ["Foo", "Bar", "Hello"] });
+  expect(docB.toJSON()).toStrictEqual({ list: ["Foo", "Bar", "Hello"] });
   {
     // The position cursor points to is now deleted,
     // but it should still get the position 

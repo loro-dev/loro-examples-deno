@@ -1,4 +1,4 @@
-import { Loro } from "npm:loro-crdt@0.15.0";
+import { Loro } from "npm:loro-crdt@0.16.4-alpha.0";
 import { expect } from "npm:expect@29.7.0";
 
 Deno.test("Save and load", () => {
@@ -10,7 +10,7 @@ Deno.test("Save and load", () => {
 
   const newDoc = new Loro();
   newDoc.import(data);
-  expect(newDoc.toJson()).toStrictEqual({
+  expect(newDoc.toJSON()).toStrictEqual({
     text: "Hello world!"
   });
 })
@@ -37,19 +37,19 @@ Deno.test("Save and load incrementally", () => {
     // import the snapshot
     const newDoc = new Loro();
     newDoc.import(data);
-    expect(newDoc.toJson()).toStrictEqual({
+    expect(newDoc.toJSON()).toStrictEqual({
       text: "Hello world!"
     });
 
     // import update0
     newDoc.import(update0)
-    expect(newDoc.toJson()).toStrictEqual({
+    expect(newDoc.toJSON()).toStrictEqual({
       text: "✨Hello world!"
     });
 
     // import update1
     newDoc.import(update1)
-    expect(newDoc.toJson()).toStrictEqual({
+    expect(newDoc.toJSON()).toStrictEqual({
       text: "😶‍🌫️✨Hello world!"
     });
   }
@@ -60,7 +60,7 @@ Deno.test("Save and load incrementally", () => {
      */
     const newDoc = new Loro();
     newDoc.importUpdateBatch([update1, update0, data])
-    expect(newDoc.toJson()).toStrictEqual({
+    expect(newDoc.toJSON()).toStrictEqual({
       text: "😶‍🌫️✨Hello world!"
     });
   }

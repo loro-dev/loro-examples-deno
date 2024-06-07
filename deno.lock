@@ -4,6 +4,8 @@
     "specifiers": {
       "npm:expect@29.7.0": "npm:expect@29.7.0",
       "npm:loro-crdt@0.15.0": "npm:loro-crdt@0.15.0",
+      "npm:loro-crdt@0.15.2": "npm:loro-crdt@0.15.2",
+      "npm:loro-crdt@0.16.4-alpha.0": "npm:loro-crdt@0.16.4-alpha.0",
       "npm:loro-crdt@0.6.2": "npm:loro-crdt@0.6.2",
       "npm:loro-crdt@0.6.3": "npm:loro-crdt@0.6.3"
     },
@@ -250,6 +252,18 @@
           "loro-wasm": "loro-wasm@0.15.0"
         }
       },
+      "loro-crdt@0.15.2": {
+        "integrity": "sha512-nIonaOOJezG8GvX784dppfN/jUacXkiJkuVpKRjDxEjdFH8jsCJiZSeZ0B5rzPTX6d/XhQ/SzvkayLZNoHDJYg==",
+        "dependencies": {
+          "loro-wasm": "loro-wasm@0.15.2"
+        }
+      },
+      "loro-crdt@0.16.4-alpha.0": {
+        "integrity": "sha512-vQP1ONERGYyuoP1xT+DA1ygyMtzv/OQMETVSo3t5zAzU8Gwle6tSWhXGF8t8iZ76MfjlQsGVgYh2l3qIt1/9HQ==",
+        "dependencies": {
+          "loro-wasm": "loro-wasm@0.16.4-alpha.0"
+        }
+      },
       "loro-crdt@0.6.2": {
         "integrity": "sha512-OsNnZbtWhRMItGKJcpxC+NAXVhXiRrbSh7D07oiAyPUkH2sEXwgRXmS0JN7Qt8JU9BsreOUgsthpyesX95OGXg==",
         "dependencies": {
@@ -264,6 +278,14 @@
       },
       "loro-wasm@0.15.0": {
         "integrity": "sha512-BYVs3z/zs7fW2BXTwHPbVxitJ2l/EdCheT4MhH2ZQGCmi7SKHUoUZ5svW0sksuVmS9potDRcXAgtVvNtfWvCSw==",
+        "dependencies": {}
+      },
+      "loro-wasm@0.15.2": {
+        "integrity": "sha512-HnmEO/q7lRCqbsKzXXFvfIeQR2sPZmL7P5mERJIFymnRoOIaZVImMsp6X+5JkhnjwuHmykIcPpo96UR2duN69Q==",
+        "dependencies": {}
+      },
+      "loro-wasm@0.16.4-alpha.0": {
+        "integrity": "sha512-XFJViVwbDo6Ol5yvGYeL6FMaE5tJCn8XtFLicRHc0CvnJTkiRgWDRVtoIUUIsn6/tH0GyaZaAvoqEZmTRA7LWQ==",
         "dependencies": {}
       },
       "loro-wasm@0.6.1": {

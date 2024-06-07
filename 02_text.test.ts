@@ -1,5 +1,18 @@
-import { Delta, Loro } from "npm:loro-crdt@0.15.0";
+import { Delta, Loro } from "npm:loro-crdt@0.15.2";
 import { expect } from "npm:expect@29.7.0";
+
+Deno.test("Long text", () => {
+  /**
+   * Loro supports text manipulation.
+   */
+  const doc = new Loro();
+  const text = doc.getText("text");
+  for (let i = 0; i < 1_000_000; i += 1) {
+    text.insert(i, i.toString())
+  }
+  doc.exportFrom();
+  doc.exportSnapshot();
+});
 
 Deno.test("Text", () => {
   /**

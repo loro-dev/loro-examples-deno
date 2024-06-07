@@ -1,4 +1,4 @@
-import { Loro, LoroList, LoroText } from "npm:loro-crdt@0.15.0";
+import { Loro, LoroList, LoroText } from "npm:loro-crdt@0.16.4-alpha.0";
 import { expect } from "npm:expect@29.7.0";
 
 Deno.test("Composition", async () => {
@@ -18,7 +18,7 @@ Deno.test("Composition", async () => {
   // Create a sub container for list
   // { map: { list: [0, 1, LoroText] } }
   const text = list.insertContainer(2, new LoroText());
-  expect(doc.toJson()).toStrictEqual({ map: { list: [0, 1, ""] } });
+  expect(doc.toJSON()).toStrictEqual({ map: { list: [0, 1, ""] } });
   {
     // Commit will trigger the event, because list is a sub container of map
     doc.commit();
@@ -28,7 +28,7 @@ Deno.test("Composition", async () => {
 
   text.insert(0, "Hello, ");
   text.insert(7, "World!");
-  expect(doc.toJson()).toStrictEqual({ map: { list: [0, 1, "Hello, World!"] } });
+  expect(doc.toJSON()).toStrictEqual({ map: { list: [0, 1, "Hello, World!"] } });
   {
     // Commit will trigger the event, because text is a descendant of map
     doc.commit();

@@ -1,4 +1,4 @@
-import { Loro, LoroList, LoroMap, LoroText } from "npm:loro-crdt@0.15.0"
+import { Loro, LoroList, LoroMap, LoroText } from "npm:loro-crdt@0.16.4-alpha.0"
 import { expect } from "npm:expect@29.7.0"
 
 Deno.test("Basic usage", () => {
@@ -15,14 +15,14 @@ Deno.test("Basic usage", () => {
   const map: LoroMap = doc.getMap("map");
   // map can only has string key
   map.set("key", "value");
-  expect(doc.toJson()).toStrictEqual({
+  expect(doc.toJSON()).toStrictEqual({
     list: ["A", "B", "C"],
     map: { key: "value" }
   });
 
   // delete 2 element at index 0
   list.delete(0, 2)
-  expect(doc.toJson()).toStrictEqual({
+  expect(doc.toJSON()).toStrictEqual({
     list: ["C"],
     map: { key: "value" }
   });
@@ -39,11 +39,11 @@ Deno.test("Sub containers", () => {
   // insert a List container at index 0, and get the handler to that list
   const subList = list.insertContainer(0, new LoroList());
   subList.insert(0, "A");
-  expect(list.toJson()).toStrictEqual([["A"]]);
+  expect(list.toJSON()).toStrictEqual([["A"]]);
   // create a Text container inside the Map container
   const subtext = map.setContainer("text", new LoroText());
   subtext.insert(0, "Hi");
-  expect(map.toJson()).toStrictEqual({ text: "Hi" });
+  expect(map.toJSON()).toStrictEqual({ text: "Hi" });
 });
 
 Deno.test("Sync", () => {
@@ -58,7 +58,7 @@ Deno.test("Sync", () => {
   listA.insert(2, "C");
   // B import the ops from A
   docB.import(docA.exportFrom());
-  expect(docB.toJson()).toStrictEqual({
+  expect(docB.toJSON()).toStrictEqual({
     list: ["A", "B", "C"]
   })
 
@@ -68,8 +68,8 @@ Deno.test("Sync", () => {
   // A import the missing ops from B
   docA.import(docB.exportFrom(docA.version()))
   // list at A is now ["A", "C"], with the same state as B
-  expect(docA.toJson()).toStrictEqual({
+  expect(docA.toJSON()).toStrictEqual({
     list: ["A", "C"]
   });
-  expect(docA.toJson()).toStrictEqual(docB.toJson());
+  expect(docA.toJSON()).toStrictEqual(docB.toJSON());
 })
