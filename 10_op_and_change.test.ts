@@ -1,8 +1,8 @@
-import { Change, Loro, LoroList, LoroText } from "npm:loro-crdt@0.16.4-alpha.0";
+import { Change, LoroDoc } from "npm:loro-crdt@1.0.0-beta.5";
 import { expect } from "npm:expect@29.7.0";
 
 Deno.test("op and change", () => {
-  const docA = new Loro();
+  const docA = new LoroDoc();
   docA.setPeerId("0");
   const textA = docA.getText("text");
   // This create 3 operations
@@ -25,19 +25,20 @@ Deno.test("op and change", () => {
         counter: 0,
         deps: [],
         timestamp: 0,
+        message: undefined,
       },
     ]);
   }
 
   // Create docB from doc
-  const docB = Loro.fromSnapshot(docA.exportSnapshot());
+  const docB = LoroDoc.fromSnapshot(docA.export({ mode: "snapshot" }));
   docB.setPeerId("1");
   const textB = docB.getText("text");
   // This create 2 operations
   textB.insert(0, "cd");
 
   // Import the Change from docB to doc
-  const bytes = docB.exportFrom(); // Exporting has implicit commit
+  const bytes = docB.export({ mode: "update" }); // Exporting has implicit commit
   docA.import(bytes);
 
   // This create 1 operations
@@ -56,6 +57,7 @@ Deno.test("op and change", () => {
         counter: 0,
         deps: [],
         timestamp: 0,
+        message: undefined,
       },
       {
         lamport: 7,
@@ -64,6 +66,7 @@ Deno.test("op and change", () => {
         counter: 5,
         deps: [{ peer: "1", counter: 1 }],
         timestamp: 0,
+        message: undefined,
       },
     ]);
     expect(changeMap.get("1")).toStrictEqual([
@@ -74,6 +77,7 @@ Deno.test("op and change", () => {
         counter: 0,
         deps: [{ peer: "0", counter: 4 }],
         timestamp: 0,
+        message: undefined,
       },
     ]);
   }

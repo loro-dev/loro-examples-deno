@@ -1,4 +1,4 @@
-import { Loro } from "npm:loro-crdt@0.6.3"
+import { Loro } from "npm:loro-crdt@1.0.0-beta.5";
 
 /**
 cpu: Apple M1
@@ -17,11 +17,11 @@ Deno.bench("Text", () => {
   for (let i = 0; i < 30000; i++) {
     text.insert(i, i.toString());
   }
-})
+});
 
 Deno.bench("Text in raw JS string", () => {
   let text = "";
   for (let i = 0; i < 30000; i++) {
     text = text.slice(0, i) + i.toString() + text.slice(i);
   }
-})
+});
