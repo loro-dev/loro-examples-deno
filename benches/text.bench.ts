@@ -1,4 +1,4 @@
-import { Loro } from "npm:loro-crdt@1.0.0-beta.5";
+import { Loro } from "npm:loro-crdt@1.0.8";
 
 /**
 cpu: Apple M1

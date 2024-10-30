@@ -1,4 +1,4 @@
-import { Cursor, LoroDoc } from "npm:loro-crdt@1.0.0-beta.5";
+import { Cursor, LoroDoc } from "npm:loro-crdt@1.0.8";
 import { expect } from "npm:expect@29.7.0";
 
 Deno.test("List", () => {

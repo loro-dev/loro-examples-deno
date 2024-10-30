@@ -2,7 +2,8 @@
   "version": "4",
   "specifiers": {
     "npm:expect@29.7.0": "29.7.0",
-    "npm:loro-crdt@1.0.0-beta.5": "1.0.0-beta.5"
+    "npm:loro-crdt@1.0.0-beta.5": "1.0.0-beta.5",
+    "npm:loro-crdt@1.0.8": "1.0.8"
   },
   "npm": {
     "@babel/code-frame@7.25.9": {
@@ -231,6 +232,9 @@
       "dependencies": [
         "loro-wasm"
       ]
+    },
+    "loro-crdt@1.0.8": {
+      "integrity": "sha512-8Qbt7klEs4CslDZ4/GsEhq6kVpHQcaz1kNUXdx/i4MP9y1M9/Qnzfamu5fHWmSe4qHOk3dzOhLYY1/Wt8UsaMA=="
     },
     "loro-wasm@1.0.0-beta.5": {
       "integrity": "sha512-UR8dOyNKmRR6gABr7KfjKCGgEWDR6yR2AuN59Kbz0QkNIOztMYdQnSlSl4x7vKpkK+rz2QmhkNUD3KdzkANVHw=="
